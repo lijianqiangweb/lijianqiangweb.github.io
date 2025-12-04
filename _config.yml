@@ -30,7 +30,7 @@ masthead_title           : # overrides the website title displayed in the masthe
 breadcrumbs              : # true, false (default)
 words_per_minute         : 60
 enable_copy_code_button  : # true, false (default)
-copyright                : "lijianqiang"
+copyright                : "lijianqiang.com"
 copyright_url            : # "copyright" URL, defaults to site.url
 comments:
 
@@ -79,7 +79,7 @@ social:
 author:
   name             : "enzo"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "i am not supersticious, but i am a little sticious."
+  bio              : "i am not superstitious, but i am a little stitious."
 #  location         : "Somewhere"
 #  email            :
   links:
