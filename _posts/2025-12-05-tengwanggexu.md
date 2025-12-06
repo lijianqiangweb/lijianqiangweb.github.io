@@ -1,5 +1,5 @@
 ---
-title:  "滕王阁序"
+title: "滕王阁序"
 search: false
 last_modified_at: 2025-12-05 T08:06:00-05:00
 ---
