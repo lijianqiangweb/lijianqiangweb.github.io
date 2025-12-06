@@ -23,6 +23,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 # github_username: lijianqiangweb
 minimal_mistakes_skin: default
 search: true
+url: "https://lijianqiang.com"
+copyright: "lijianqiang.com"
+copyright_url: # "copyright" URL, defaults to site.url
 
 # Build settings
 markdown: kramdown
@@ -86,6 +89,7 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
+  since: "2012"    
 
 defaults:
   # _posts
