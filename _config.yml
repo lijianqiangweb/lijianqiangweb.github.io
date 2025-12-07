@@ -121,4 +121,4 @@ tag_archive:
 
 exclude:
   - feed.xml
-  - atom.xml
+
