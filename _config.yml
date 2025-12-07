@@ -91,8 +91,6 @@ footer:
     #  url: "https://instagram.com/"
   since: "2012"    
 
-feed:
-    enabled: false
 
 defaults:
   # _posts
@@ -122,4 +120,5 @@ tag_archive:
   path: /tags/
 
 exclude:
-  -feed.xml
+  - feed.xml
+  - atom.xml
