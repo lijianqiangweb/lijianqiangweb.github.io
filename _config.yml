@@ -119,6 +119,6 @@ tag_archive:
   type: liquid
   path: /tags/
 
-ui-text:
-  recent_posts: ""
+archive:
+  show_title: false
 
