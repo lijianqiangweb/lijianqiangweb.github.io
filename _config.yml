@@ -119,6 +119,4 @@ tag_archive:
   type: liquid
   path: /tags/
 
-exclude:
-  - feed.xml
 
