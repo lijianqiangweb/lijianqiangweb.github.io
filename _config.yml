@@ -35,11 +35,6 @@ paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
-collections:
-  posts:
-    output: true
-    show_title: false
-
 
 include:
   - _pages
@@ -97,6 +92,7 @@ footer:
     #  url: "https://instagram.com/"
   since: "2012"    
 
+# hide feed bottom on footer
 atom_feed:
   hide: true
 
@@ -127,6 +123,9 @@ tag_archive:
   type: liquid
   path: /tags/
 
-archive:
-  show_title: false
+home:
+  layout: "archive"
+  archive:
+    show_title: false
+    show_excerpts: true
 
