@@ -58,6 +58,11 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
+jekyll-archives:
+  enabled: [year, categories, tags]
+  layout: "archive"
+  show_archive_header: false
+
 author:
   name   : "Enzo"
   avatar : "/assets/images/bio-photo.jpg"
