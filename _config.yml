@@ -91,7 +91,7 @@ footer:
     #  url: "https://instagram.com/"
   since: "2012"    
 
-  feed:
+feed:
     enabled: false
 
 defaults:
