@@ -123,9 +123,4 @@ tag_archive:
   type: liquid
   path: /tags/
 
-home:
-  layout: "archive"
-  archive:
-    show_title: false
-    show_excerpts: true
 
