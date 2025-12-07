@@ -64,10 +64,35 @@ author:
   name   : "Enzo"
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "I am not superstitious, but I am a little stitious."
-
+  #links:
+    #- label: "Website"
+    #  icon: "fas fa-fw fa-link"
+    #  url: "https://lijianqiang.com"
+    #- label: "Twitter"
+    #  icon: "fab fa-fw fa-twitter-square"
+    #  url: "https://twitter.com/"
+    #- label: "GitHub"
+    #  icon: "fab fa-fw fa-github"
+    #  url: "https://github.com/"
+    #- label: "Instagram"
+    #  icon: "fab fa-fw fa-instagram"
+    #  url: "https://instagram.com/"
 
 footer:
+  #links:
+    #- label: "Twitter"
+    #  icon: "fab fa-fw fa-twitter-square"
+    #  url: "https://twitter.com/"
+    #- label: "GitHub"
+    #  icon: "fab fa-fw fa-github"
+    #  url: "https://github.com/"
+    #- label: "Instagram"
+    #  icon: "fab fa-fw fa-instagram"
+    #  url: "https://instagram.com/"
   since: "2012"    
+
+  feed:
+  enabled: false
 
 defaults:
   # _posts
