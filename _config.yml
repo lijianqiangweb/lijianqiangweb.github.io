@@ -92,7 +92,7 @@ footer:
   since: "2012"    
 
   feed:
-  enabled: false
+    enabled: false
 
 defaults:
   # _posts
