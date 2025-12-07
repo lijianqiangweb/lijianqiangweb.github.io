@@ -91,6 +91,8 @@ footer:
     #  url: "https://instagram.com/"
   since: "2012"    
 
+atom_feed:
+  hide: true
 
 defaults:
   # _posts
