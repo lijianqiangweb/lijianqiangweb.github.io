@@ -8,3 +8,10 @@
 h3.archive__subtitle {
     display: none !important;
 }
+
+/* 调整版权信息区域的内边距 */
+.page__footer-copyright {
+    padding-top: 0.5em !important;    /* 减少上方空白 */
+    padding-bottom: 0.5em !important; /* 减少下方空白 */
+    margin-top: 0 !important;         /* 减少顶部外边距 */
+  }
