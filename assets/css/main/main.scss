@@ -5,6 +5,7 @@
 @import "minimal-mistakes"; // 这行会导入主题的全部默认样式
 
 /* 在这之后添加你的自定义CSS */
-.archive__subtitle {
-  display: none;
+.page__content h3.archive__subtitle,
+.archive h3.archive__subtitle {
+  display: none !important;
 }
