@@ -1,1 +1,10 @@
-.archive__subtitle { display: none; }
+---
+# 这个破折号区块是必需的Jekyll前端声明，它告诉Jekyll需要处理这个文件
+---
+
+@import "minimal-mistakes"; // 这行会导入主题的全部默认样式
+
+/* 在这之后添加你的自定义CSS */
+.archive__subtitle {
+  display: none;
+}
