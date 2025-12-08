@@ -11,12 +11,13 @@ h3.archive__subtitle {
 
 /* 调整版权信息区域的内边距 */
 /* 精准降低版权信息栏高度 */
-#footer footer,
+
 .page__footer {
     margin-top: 2em !important;
     margin-bottom: 1em !important;
     background: none !important;
 }
+#footer footer,
 .page__footer > footer {
     /* 核心：减少上下内边距，直接压缩背景区域高度 */
     padding-top: 0.5em !important;
