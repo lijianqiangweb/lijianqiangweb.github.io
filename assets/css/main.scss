@@ -10,8 +10,15 @@ h3.archive__subtitle {
 }
 
 /* 调整版权信息区域的内边距 */
+/* 精准降低版权信息栏高度 */
 .page__footer-copyright {
-    padding-top: 0.5em !important;    /* 减少上方空白 */
-    padding-bottom: 0.5em !important; /* 减少下方空白 */
-    margin-top: 0 !important;         /* 减少顶部外边距 */
+    /* 核心：减少垂直方向的内边距，直接降低高度 */
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    
+    /* 可选：如果与上方元素间距过大，可一并调整 */
+    margin-top: 0.5rem !important;
+    
+    /* 可选：进一步微调文字行高 */
+    line-height: 1.3 !important;
   }
