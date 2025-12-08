@@ -1,0 +1,10 @@
+---
+# 这两行“---”是必需的，告诉Jekyll这是一个需要处理的文件
+---
+
+@import "minimal-mistakes"; /* 导入主题的所有基础样式，这行非常重要！ */
+
+/* 在这之后添加你的自定义CSS */
+h3.archive__subtitle {
+    display: none !important;
+}
