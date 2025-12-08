@@ -23,6 +23,8 @@ h3.archive__subtitle {
     /* 核心：减少上下内边距，直接压缩背景区域高度 */
     padding-top: 0.5em !important;
     padding-bottom: 0.5em !important;
-    
+  }
 
+.page__content p + p {
+    margin-top: 1.5em !important; /* 在相邻段落的上方增加间距 */
   }
