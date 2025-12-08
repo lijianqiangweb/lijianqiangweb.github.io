@@ -26,9 +26,9 @@
     </h2>
     <!-- 在标题下方添加发表日期 -->
 <p class="archive__item-excerpt" itemprop="description">
-    <time datetime="{{ page.date | date_to_xmlschema }}">
-     {{ page.date | date: "%Y-%m-%d" }}
-    </time>
+    <time datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: "%Y-%m-%d" }}
+      </time>
   </p>
     {% include page__meta.html type=include.type %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
