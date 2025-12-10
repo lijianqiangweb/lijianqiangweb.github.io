@@ -2,9 +2,7 @@
 title: "建站笔记"
 search: false
 categories:
-#  - blog
   - website journal
-  - 
 tags:
   - 网站
 date: 2025-12-11
