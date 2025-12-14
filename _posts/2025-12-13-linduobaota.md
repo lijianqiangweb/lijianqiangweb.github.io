@@ -1,8 +1,6 @@
 ---
 title: "临多宝塔"
 header:
-  overlay_image: /assets/images/2025/12/duobaota.jpg
-  overlay_filter: rgba(0, 0, 0, 0.3)
   teaser: /assets/images/2025/12/duobaota.jpg
 search: false
 categories:
