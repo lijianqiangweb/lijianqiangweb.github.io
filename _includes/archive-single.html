@@ -1,8 +1,41 @@
-{% comment %} ... 前面的图片提取代码不变 ... {% endcomment %}
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = nil %}
+  {% assign content = post.content %}
+  
+  {% comment %} 提取 Markdown 格式图片 {% endcomment %}
+  {% assign md_split = content | split: '![' %}
+  {% if md_split.size > 1 %}
+    {% assign md_part = md_split[1] | split: '](' %}
+    {% if md_part.size > 1 %}
+      {% capture teaser %}{{ md_part[1] | split: ')' | first | strip }}{% endcapture %}
+    {% endif %}
+  {% endif %}
+  
+  {% comment %} 提取 HTML 格式图片 {% endcomment %}
+  {% unless teaser %}
+    {% assign html_split = content | split: '<img' %}
+    {% if html_split.size > 1 %}
+      {% assign img_content = html_split[1] %}
+      {% assign src_split = img_content | split: 'src="' %}
+      {% if src_split.size > 1 %}
+        {% capture teaser %}{{ src_split[1] | split: '"' | first | strip }}{% endcapture %}
+      {% endif %}
+    {% endif %}
+  {% endunless %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
 
 <div class="{{ include.type | default: 'list' }}__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork"{% if post.locale %} lang="{{ post.locale }}"{% endif %}>
     
+    {% comment %} 网格布局：图片在顶部 {% endcomment %}
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
         <img src="{{ teaser | relative_url }}" alt="{{ title }}">
@@ -23,11 +56,11 @@
     
     {% include page__meta.html type=include.type %}
     
-    {% comment %} 摘要内容 {% endcomment %}
-    <div class="archive__item-excerpt" itemprop="description">
-      {% comment %} 列表布局：图片+摘要 {% endcomment %}
-      {% if include.type == "list" %}
-        {% if teaser %}
+    {% comment %} 摘要内容区域 {% endcomment %}
+    {% if post.excerpt or teaser %}
+      <div class="archive__item-excerpt" itemprop="description">
+        {% comment %} 列表布局：图片作为摘要的开头 {% endcomment %}
+        {% if include.type == "list" and teaser %}
           <div class="excerpt-leading-image">
             <a href="{{ post.url | relative_url }}">
               <img src="{{ teaser | relative_url }}" 
@@ -36,12 +69,13 @@
             </a>
           </div>
         {% endif %}
-      {% endif %}
-      
-      {% if post.excerpt %}
-        {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
-      {% endif %}
-    </div>
+        
+        {% comment %} 摘要文字 {% endcomment %}
+        {% if post.excerpt %}
+          {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
+        {% endif %}
+      </div>
+    {% endif %}
     
   </article>
 </div>
