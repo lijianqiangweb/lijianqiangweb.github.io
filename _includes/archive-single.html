@@ -1,166 +1,106 @@
+{% comment %} 第一部分：提取图片 {% endcomment %}
 {% if post.header.teaser %}
   {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
 {% else %}
-  {% comment %} 如果没有设置 teaser，尝试从文章内容提取第一张图片 {% endcomment %}
-  {% assign first_image = "" %}
+  {% assign teaser = nil %}
+  {% assign content = post.content %}
   
-  {% comment %} 从文章内容中提取第一张图片 {% endcomment %}
-  {% assign content_text = post.content %}
-  
-  {% comment %} 1. 查找 Markdown 格式的图片 ![alt](src) {% endcomment %}
-  {% assign md_image = content_text | split: '![' %}
-  {% if md_image.size > 1 %}
-    {% assign md_image_part = md_image[1] | split: '](' %}
-    {% if md_image_part.size > 1 %}
-      {% assign first_image = md_image_part[1] | split: ')' | first | strip %}
+  {% comment %} 提取 Markdown 格式图片 {% endcomment %}
+  {% assign md_split = content | split: '![' %}
+  {% if md_split.size > 1 %}
+    {% assign md_part = md_split[1] | split: '](' %}
+    {% if md_part.size > 1 %}
+      {% capture teaser %}{{ md_part[1] | split: ')' | first | strip }}{% endcapture %}
     {% endif %}
   {% endif %}
   
-  {% comment %} 2. 如果没找到 Markdown 图片，查找 HTML img 标签 {% endcomment %}
-  {% if first_image == "" %}
-    {% assign html_image = content_text | split: '<img' %}
-    {% if html_image.size > 1 %}
-      {% assign img_src = html_image[1] | split: 'src="' %}
-      {% if img_src.size > 1 %}
-        {% assign first_image = img_src[1] | split: '"' | first | strip %}
-      {% else %}
-        {% comment %} 尝试单引号 {% endcomment %}
-        {% assign img_src = html_image[1] | split: "src='" %}
-        {% if img_src.size > 1 %}
-          {% assign first_image = img_src[1] | split: "'" | first | strip %}
-        {% endif %}
+  {% comment %} 提取 HTML 格式图片 {% endcomment %}
+  {% unless teaser %}
+    {% assign html_split = content | split: '<img' %}
+    {% if html_split.size > 1 %}
+      {% assign img_content = html_split[1] %}
+      {% assign src_split = img_content | split: 'src="' %}
+      {% if src_split.size > 1 %}
+        {% capture teaser %}{{ src_split[1] | split: '"' | first | strip }}{% endcapture %}
       {% endif %}
     {% endif %}
-  {% endif %}
-  
-  {% comment %} 3. 如果找到了图片，设置为 teaser {% endcomment %}
-  {% if first_image != "" %}
-    {% capture teaser %}{{ first_image }}{% endcapture %}
-  {% else %}
-    {% assign teaser = site.teaser %}
-  {% endif %}
+  {% endunless %}
 {% endif %}
 
+{% comment %} 第二部分：准备标题 {% endcomment %}
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
   {% assign title = post.title %}
 {% endif %}
 
+{% comment %} 第三部分：显示内容 {% endcomment %}
 <div class="{{ include.type | default: 'list' }}__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork"{% if post.locale %} lang="{{ post.locale }}"{% endif %}>
     
-    {% comment %} 网格布局：图片在顶部 {% endcomment %}
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
+    {% comment %} 标题 - 总是显示 {% endcomment %}
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      {% if post.link %}
+        <a href="{{ post.link }}">{{ title }}</a> 
+        <a href="{{ post.url | relative_url }}" rel="permalink">
+          <i class="fas fa-link" aria-hidden="true" title="permalink"></i>
+          <span class="sr-only">Permalink</span>
+        </a>
+      {% else %}
+        <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+    </h2>
+    
+    {% comment %} 图片 - 如果有则显示 {% endcomment %}
+    {% if teaser %}
+      <div class="post-image">
         <a href="{{ post.url | relative_url }}">
-          <img src="{{ teaser | relative_url }}" alt="{{ title }}">
+          <img src="{{ teaser | relative_url }}" 
+               alt="{{ title }}"
+               loading="lazy">
         </a>
       </div>
-    
-    {% comment %} 列表布局：图片在左侧 {% endcomment %}
-    {% elsif include.type == "list" and teaser %}
-      <div class="archive__item-with-image">
-        <div class="archive__item-teaser archive__item-teaser--list">
-          <a href="{{ post.url | relative_url }}">
-            <img src="{{ teaser | relative_url }}" alt="{{ title }}">
-          </a>
-        </div>
-        <div class="archive__item-content">
-          <h2 class="archive__item-title no_toc" itemprop="headline">
-            {% if post.link %}
-              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-            {% else %}
-              <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
-            {% endif %}
-          </h2>
-          {% include page__meta.html type=include.type %}
-          {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
-        </div>
-      </div>
-    
-    {% comment %} 没有图片或不是列表/网格布局 {% endcomment %}
-    {% else %}
-      <h2 class="archive__item-title no_toc" itemprop="headline">
-        {% if post.link %}
-          <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-        {% else %}
-          <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
-        {% endif %}
-      </h2>
-      {% include page__meta.html type=include.type %}
-      {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
-    
     {% endif %}
     
-    {% comment %} 对于网格布局，标题等在图片下面显示 {% endcomment %}
-    {% if include.type == "grid" or include.type != "list" or teaser == nil %}
-      {% unless include.type == "list" and teaser %}
-        <h2 class="archive__item-title no_toc" itemprop="headline">
-          {% if post.link %}
-            <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-          {% else %}
-            <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
-          {% endif %}
-        </h2>
-        {% include page__meta.html type=include.type %}
-        {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
-      {% endunless %}
+    {% comment %} 元数据和摘要 {% endcomment %}
+    {% include page__meta.html type=include.type %}
+    
+    {% if post.excerpt %}
+      <p class="archive__item-excerpt" itemprop="description">
+        {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
+      </p>
     {% endif %}
     
   </article>
 </div>
 
 <style>
-/* 列表布局的图片样式 */
-.archive__item-with-image {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
+.post-image {
+  margin: 12px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  max-height: 250px;
 }
 
-.archive__item-teaser--list {
-  flex: 0 0 150px;
-}
-
-.archive__item-teaser--list img {
+.post-image img {
   width: 100%;
-  height: 100px;
+  height: auto;
+  max-height: 250px;
   object-fit: cover;
-  border-radius: 4px;
-}
-
-.archive__item-content {
-  flex: 1;
-}
-
-/* 网格布局的图片样式 */
-.archive__item-teaser img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
   transition: transform 0.3s;
 }
 
-.archive__item-teaser:hover img {
+.post-image:hover img {
   transform: scale(1.03);
 }
 
-/* 响应式调整 */
 @media (max-width: 768px) {
-  .archive__item-with-image {
-    flex-direction: column;
-    gap: 15px;
+  .post-image {
+    max-height: 180px;
   }
   
-  .archive__item-teaser--list {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-  
-  .archive__item-teaser--list img {
-    height: 150px;
+  .post-image img {
+    max-height: 180px;
   }
 }
 </style>
