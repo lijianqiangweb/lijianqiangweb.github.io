@@ -1,5 +1,8 @@
 ---
 title: "临多宝塔"
+header:
+  image: /assets/images/2025/12/duobaota.jpg
+  teaser: /assets/images/2025/12/duobaota.jpg
 search: false
 categories:
   - thoughts
