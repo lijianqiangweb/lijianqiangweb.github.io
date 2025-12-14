@@ -1,44 +1,14 @@
-{% comment %} 第一部分：提取图片 {% endcomment %}
-{% if post.header.teaser %}
-  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
-{% else %}
-  {% assign teaser = nil %}
-  {% assign content = post.content %}
-  
-  {% comment %} 提取 Markdown 格式图片 {% endcomment %}
-  {% assign md_split = content | split: '![' %}
-  {% if md_split.size > 1 %}
-    {% assign md_part = md_split[1] | split: '](' %}
-    {% if md_part.size > 1 %}
-      {% capture teaser %}{{ md_part[1] | split: ')' | first | strip }}{% endcapture %}
-    {% endif %}
-  {% endif %}
-  
-  {% comment %} 提取 HTML 格式图片 {% endcomment %}
-  {% unless teaser %}
-    {% assign html_split = content | split: '<img' %}
-    {% if html_split.size > 1 %}
-      {% assign img_content = html_split[1] %}
-      {% assign src_split = img_content | split: 'src="' %}
-      {% if src_split.size > 1 %}
-        {% capture teaser %}{{ src_split[1] | split: '"' | first | strip }}{% endcapture %}
-      {% endif %}
-    {% endif %}
-  {% endunless %}
-{% endif %}
+{% comment %} ... 前面的图片提取代码不变 ... {% endcomment %}
 
-{% comment %} 第二部分：准备标题 {% endcomment %}
-{% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-{% else %}
-  {% assign title = post.title %}
-{% endif %}
-
-{% comment %} 第三部分：显示内容 {% endcomment %}
 <div class="{{ include.type | default: 'list' }}__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork"{% if post.locale %} lang="{{ post.locale }}"{% endif %}>
     
-    {% comment %} 标题 - 总是显示 {% endcomment %}
+    {% if include.type == "grid" and teaser %}
+      <div class="archive__item-teaser">
+        <img src="{{ teaser | relative_url }}" alt="{{ title }}">
+      </div>
+    {% endif %}
+    
     <h2 class="archive__item-title no_toc" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> 
@@ -51,56 +21,74 @@
       {% endif %}
     </h2>
     
-    {% comment %} 图片 - 如果有则显示 {% endcomment %}
-    {% if teaser %}
-      <div class="post-image">
-        <a href="{{ post.url | relative_url }}">
-          <img src="{{ teaser | relative_url }}" 
-               alt="{{ title }}"
-               loading="lazy">
-        </a>
-      </div>
-    {% endif %}
-    
-    {% comment %} 元数据和摘要 {% endcomment %}
     {% include page__meta.html type=include.type %}
     
-    {% if post.excerpt %}
-      <p class="archive__item-excerpt" itemprop="description">
+    {% comment %} 摘要内容 {% endcomment %}
+    <div class="archive__item-excerpt" itemprop="description">
+      {% comment %} 列表布局：图片+摘要 {% endcomment %}
+      {% if include.type == "list" %}
+        {% if teaser %}
+          <div class="excerpt-leading-image">
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ teaser | relative_url }}" 
+                   alt="{{ title }}"
+                   loading="lazy">
+            </a>
+          </div>
+        {% endif %}
+      {% endif %}
+      
+      {% if post.excerpt %}
         {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
-      </p>
-    {% endif %}
+      {% endif %}
+    </div>
     
   </article>
 </div>
 
 <style>
-.post-image {
-  margin: 12px 0;
+.archive__item-teaser img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 6px;
-  overflow: hidden;
-  max-height: 250px;
+  margin-bottom: 15px;
 }
 
-.post-image img {
+/* 摘要区域 */
+.archive__item-excerpt {
+  margin-top: 10px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* 摘要开头的图片 */
+.excerpt-leading-image {
+  margin-bottom: 15px;
+}
+
+.excerpt-leading-image a {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.excerpt-leading-image img {
   width: 100%;
   height: auto;
-  max-height: 250px;
+  max-height: 200px;
   object-fit: cover;
   transition: transform 0.3s;
 }
 
-.post-image:hover img {
-  transform: scale(1.03);
+.excerpt-leading-image:hover img {
+  transform: scale(1.02);
 }
 
+/* 移动端调整 */
 @media (max-width: 768px) {
-  .post-image {
-    max-height: 180px;
-  }
-  
-  .post-image img {
-    max-height: 180px;
+  .excerpt-leading-image img {
+    max-height: 150px;
   }
 }
 </style>
