@@ -11,3 +11,5 @@ date: 2025-12-16
 图床测试。
 
 ![日出](https://i.ooxx.ooo/i/M2FjO.jpg)
+
+![白头鹎](https://i.ooxx.ooo/i/ZDUzY.jpg)
