@@ -17,7 +17,7 @@ date: 2025-12-16
 
 寺院的猫儿倒是很自在，就是银杏叶已经落光，全都铺在地上，厚厚的一层。
 
-![007](https://www.imgur.la/images/2025/12/17/0079684da410ba487cb.jpg)
+![007](https://www.imgur.la/image/6dSgGG)
 ![008](https://www.imgur.la/images/2025/12/17/00841f0a5c44921323a.jpg)
 ![006](https://www.imgur.la/images/2025/12/17/00671a6b2f517e7b7ed.jpg)
 ![009](https://www.imgur.la/images/2025/12/17/009.jpg)
