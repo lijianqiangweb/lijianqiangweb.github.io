@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "三个故事"
 search: false
 categories:
   - blog
