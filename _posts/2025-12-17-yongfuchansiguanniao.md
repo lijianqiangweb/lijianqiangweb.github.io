@@ -15,9 +15,22 @@ date: 2025-12-16
 
 拍鸟就是废片太多，这些鸥的移动速度太快，我的镜头对焦又太差，好容易才凑了几张能看的。
 
-寺院的猫儿倒是很自在，就是银杏叶已经落光，全都铺在地上，厚厚的一层。
+寺院的猫儿倒是很自在，就是银杏叶已经落光，全都铺在地上，厚厚的一层，尽显秋色。
 
-![007](https://www.imgur.la/image/6dSgGG)
-![008](https://www.imgur.la/images/2025/12/17/00841f0a5c44921323a.jpg)
-![006](https://www.imgur.la/images/2025/12/17/00671a6b2f517e7b7ed.jpg)
-![009](https://www.imgur.la/images/2025/12/17/009.jpg)
+![1](/assets/images/2025/12/yonghuisi1.jpg "永慧禅寺")
+
+![2](/assets/images/2025/12/yonghuisi2.jpg "永慧禅寺")
+
+![3](/assets/images/2025/12/yonghuisi3.jpg "永慧禅寺")
+
+![4](/assets/images/2025/12/yonghuisi4.jpg "永慧禅寺")
+
+![5](/assets/images/2025/12/yonghuisi5.jpg "永慧禅寺")
+
+![6](/assets/images/2025/12/yonghuisi6.jpg "永慧禅寺")
+
+![7](/assets/images/2025/12/yonghuisi7.jpg "永慧禅寺")
+
+![8](/assets/images/2025/12/yonghuisi8.jpg "永慧禅寺")
+
+![9](/assets/images/2025/12/yonghuisi9.jpg "永慧禅寺")
