@@ -8,7 +8,7 @@ tags:
 date: 2025-12-28 02:32:48 GMT+8
 ---
 
-![1](/assets/images/2025/12/xitaing.jpg "戏台")
+![1](/assets/images/2025/12/xitai.jpg "戏台")
 
 按照惯例，看完说两句。
 
