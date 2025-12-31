@@ -4,7 +4,7 @@ search: false
 categories:
   - blog
 tags:
-  - 看法
+  - thoughts
 date: 2025-12-14
 ---
 
