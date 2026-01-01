@@ -4,7 +4,7 @@ search: false
 categories:
   - opinions
 tags:
-  - 短评
+  - thoughts
 date: 2025-12-11
 ---
 
