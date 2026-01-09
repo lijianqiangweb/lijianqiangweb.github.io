@@ -16,5 +16,3 @@ date: 2026-01-10 02:59:06 +0800
 ![1](/assets/images/2026/01/1.jpg)
 
 ![2](/assets/images/2026/01/2.jpg)
-
-/Users/enzoli/Documents/GitHub/lijqweb.github.io/assets/images/2026/01/1.jpg
