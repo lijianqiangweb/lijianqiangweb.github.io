@@ -13,6 +13,8 @@ date: 2026-01-10 02:59:06 +0800
 
 这支是合三舍 扶光 二，非常好的一支笔。正是因为它好写，用得比较多，现在已经明显感觉到软趴趴，笔锋回不来了。当然这也有可能单纯是我的技术问题，毕竟才半年时间，没有太多的体会。
 
-![1](/assets/images/2026/01/1.jpg "")
+![1](/assets/images/2026/01/1.jpg)
 
-![2](/assets/images/2026/01/2.jpg "")
+![2](/assets/images/2026/01/2.jpg)
+
+/Users/enzoli/Documents/GitHub/lijqweb.github.io/assets/images/2026/01/1.jpg
